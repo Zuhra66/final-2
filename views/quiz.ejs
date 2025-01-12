@@ -1,0 +1,39 @@
+<%- include("partials/header.ejs") %>
+<body>
+    <%- include('partials/nav') %>
+
+    <div class="container">
+        <h1>Quiz</h1>
+        <p>What is the element of this Pokémon?</p>
+        
+        <div class="monster-card">
+            <img src="/img/<%= pokemon.imgName %>" alt="<%= pokemon.name %>" width="200">
+        </div>
+
+        <form id="quizForm">
+            <div class="form-group">
+                <label>
+                    <input type="radio" name="element" value="Fire"> Fire
+                </label>
+            </div>
+            <div class="form-group">
+                <label>
+                    <input type="radio" name="element" value="Water"> Water
+                </label>
+            </div>
+            <div class="form-group">
+                <label>
+                    <input type="radio" name="element" value="Grass"> Grass
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+    <%- include("partials/footer.ejs") %>
+
+    <!-- Link to External Script -->
+    <script src="/js/script.js"></script>
+</body>

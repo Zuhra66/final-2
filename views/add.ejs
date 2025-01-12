@@ -1,0 +1,86 @@
+<%- include("partials/header.ejs") %>
+<body>
+  <%- include('partials/nav') %>
+  
+  <h1>Adding a New Monster</h1>
+  <div class="container">
+    <!-- Form to add a new monster -->
+    <form method="POST" action="/add/new">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" required>
+      </div>
+    
+      <div>
+        <label for="description">Description:</label>
+        <input type="text" name="description" id="description" required>
+      </div>
+    
+      <div>
+        <label for="elementId">Element:</label>
+        <select name="elementId" id="elementId" required>
+          <% elements.forEach(function(element) { %>
+            <option value="<%= element.elementId %>"><%= element.elementName %></option>
+          <% }) %>
+        </select>
+      </div>
+    
+      <div>
+        <label for="firstCaught">Date of Caught:</label>
+        <input type="date" name="firstCaught" id="firstCaught" required>
+      </div>
+    
+      <div>
+        <label for="imgName">Img Name:</label>
+        <input type="text" name="imgName" id="imgName" required>
+      </div>
+    
+      <div>
+        <label for="score">Score:</label>
+        <input type="number" name="score" id="score" required>
+      </div>
+    
+      <button type="submit">Add</button>
+    </form>
+    
+    
+    <% if (typeof message != "undefined") { %>
+      <h3><%= message %></h3>
+    <% } %>
+  </div>
+
+  <hr>
+
+  <!-- List of all monsters -->
+  <h2>All Monsters</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Element</th>
+        <th>Date Caught</th>
+        <th>Image</th>
+        <th>Score</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% pokemons.forEach(function(monster) { %>
+        <tr>
+          <td><%= monster.name %></td>
+          <td><%= monster.description %></td>
+          <td><%= monster.elementName %></td>
+          <td><%= monster.firstCaught %></td>
+          <td><img src="/img/<%= monster.imgName %>" alt="<%= monster.name %>" width="50"></td>
+          <td><%= monster.score %></td>
+          <td>
+            <a href="/update/<%= monster.monsterId %>">Update</a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  
+  <%- include("partials/footer.ejs") %>
+</body>

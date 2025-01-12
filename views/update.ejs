@@ -1,0 +1,28 @@
+<%- include('partials/header.ejs') %>
+<body>
+  <%- include('partials/nav') %>
+
+  <div class="container">
+    <h1>Update Monster Score</h1>
+    <div class="monster-card">
+      <img src="/img/<%= monster.imgName %>" alt="<%= monster.name %>" width="150">
+      <h2><%= monster.name %></h2>
+    </div>
+
+    <form method="POST" action="/update/<%= monster.monsterId %>">
+      <div class="form-group">
+        <label for="score">Score:</label>
+        <input
+          type="number"
+          id="score"
+          name="score"
+          value="<%= monster.score %>"
+          required
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Update Score</button>
+    </form>
+  </div>
+
+  <%- include('partials/footer.ejs') %>
+</body>
